@@ -32,7 +32,7 @@ Enter operation codes (see ``OperationCodes`` for a full list) and target addres
 
 ## Release History
 
-* 0.0.1
+* 0.0.1 (October 26, 2021)
     * First version: basic program structure and functions present
 
 ## Meta
