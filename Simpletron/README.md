@@ -1,6 +1,8 @@
 # Simpletron
 > Simulates low-level assembly programming with built-in classes in C++
 
+* Language: C++
+
 ## Installation
 
 With Visual C++ on Windows:
