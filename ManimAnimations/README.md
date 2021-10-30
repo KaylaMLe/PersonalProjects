@@ -1,5 +1,5 @@
 # Manim Animations
-> Animations rendered using ManimCE to demonstrate various mathematic concepts
+> Animations rendered using [ManimCE](https://www.manim.community/) to demonstrate various mathematic concepts
 
 * Language: Python
 
