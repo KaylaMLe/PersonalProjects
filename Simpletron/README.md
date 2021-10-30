@@ -34,15 +34,6 @@ Enter operation codes (see ``OperationCodes`` for a full list) and target addres
 
 * 0.0.1 (October 26, 2021)
     * First version: basic program structure and functions present
-
-## Meta
-
-Kayla Marie Le – [LinkedIn](https://www.linkedin.com/in/kaylamle/) – kaylale2014@gmail.com
-
-Distributed under the GNU General Public License v3.0. See ``LICENSE`` for more information.
-
-[https://github.com/yourname/github-link](https://github.com/dbader/)
-
 <!-- Markdown link & img dfn's -->
 [npm-image]: https://img.shields.io/npm/v/datadog-metrics.svg?style=flat-square
 [npm-url]: https://npmjs.org/package/datadog-metrics
