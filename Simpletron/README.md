@@ -5,22 +5,10 @@
 
 ## Installation
 
-With Visual C++ on Windows:
+With GCC on Windows, Mac OS X, and Unix systems:
 
 ```sh
-cl /o Simpletron Simpletron.cpp
-```
-
-With GCC on Unix systems:
-
-```sh
-g++ Simpletron.cpp -o Simpletron
-```
-
-With Clang on Mac OS X:
-
-```sh
-g++ Simpletron.cpp -o Simpletron
+g++ Simpletron.cpp exe_overview.cpp -o Simpletron
 ```
 
 ## Usage example
@@ -32,8 +20,10 @@ Enter operation codes (see ``OperationCodes`` for a full list) and target addres
 
 ## Release History
 
-* 0.0.1 (October 26, 2021)
+* 1.0 (October 26, 2021)
     * First version: basic program structure and functions present
+* 1.1 (October 31, 2021)
+    * Separated main file into Simpletron.cpp and appropriate header files
 <!-- Markdown link & img dfn's -->
 [npm-image]: https://img.shields.io/npm/v/datadog-metrics.svg?style=flat-square
 [npm-url]: https://npmjs.org/package/datadog-metrics
