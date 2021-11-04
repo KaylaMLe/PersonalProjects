@@ -19,4 +19,4 @@ Kayla Marie Le – [LinkedIn](https://www.linkedin.com/in/kaylamle/) – kaylale
 
 Distributed under the GNU General Public License v3.0. See ``LICENSE`` for more information.
 
-[https://github.com/yourname/github-link](https://github.com/dbader/)
+[https://github.com/KaylaMLe/PersonalProjects](https://github.com/dbader/)
