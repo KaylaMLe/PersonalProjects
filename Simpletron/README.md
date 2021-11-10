@@ -24,6 +24,8 @@ Enter operation codes (see ``OperationCodes`` for a full list) and target addres
     * First version: basic program structure and functions present
 * 1.1 (October 31, 2021)
     * Separated main file into Simpletron.cpp and appropriate header files
+* 1.2 (November 10, 2021)
+	* Added CPSR flags and checks them to branch. Also added branchoverflow
 <!-- Markdown link & img dfn's -->
 [npm-image]: https://img.shields.io/npm/v/datadog-metrics.svg?style=flat-square
 [npm-url]: https://npmjs.org/package/datadog-metrics
