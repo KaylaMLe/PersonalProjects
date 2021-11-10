@@ -1,3 +1,13 @@
+// TODO:
+// overflow but not crash
+// display CPSR when memdumping
+// Warning	C4715	'runtime::processes::execute': not all control paths return a value
+// implement carry flag
+// optimize opcode checking during execution (impractical and slow to check an entire case/switch of every code)
+// rework to register 0 - 16
+// use string-based words (enumerate?)
+// enable reading/writing to files (.s or .txt?)
+
 #include "exe_overview.h"
 #include <iostream>
 #include <iomanip>
@@ -9,17 +19,13 @@ processes prcs;
 
 int main()
 {
-    int memory[MEM_SIZE]{0};
+    int memory[MEM_SIZE]{ 0 };
 
     // registers
-    int accumulator{ 0 };
-    int instructionRegister{ 0 };
-    int instructionCounter{ 0 };
-    int operationCode{ 0 };
-    int operand{ 0 };
+    int accumulator{ 0 }, int instructionRegister{ 0 }, int PC{ 0 }, int operationCode, int operand{ 0 };
 
-    std::cout << "*** Welcome to Simpletron! ***\n"
-        << "*** Please enter your program one instruction ***\n\a"
+    std::cout << "\a*** Welcome to Simpletron! ***\n"// note the \a
+        << "*** Please enter your program one instruction ***\n"
         << "*** (or data word) at a time. I will type the ***\n"
         << "*** location number and a question mark (?). ***\n"
         << "*** You then type the word for that location. ***\n"
@@ -38,18 +44,16 @@ int main()
 
             std::cin.clear();// allows iteration
             std::cin >> memory[i];
-        } while ((memory[i] < -9999 || memory[i] > +9999) && memory[i] != -99999);
+        } while ((memory[i] < -9999 || memory[i] > +9999) && memory[i] != -99999);// if not a four digit integer, re-prompt
 
-        // stop loading
-        if (memory[i] == -99999) {
-            memory[i] = 0;// code not stored
-            std::cout << "\n*** Program loading completed ***\n" << "*** Program execution begins ***\n" << std::endl;
-            prcs.execute(memory, accumulator, instructionCounter, instructionRegister, operationCode, operand);
-            return 0;
-        }
+        // stop loading when memory[i] == -99999
+        memory[i] = 0;// stop code not stored
+        std::cout << "\n*** Program loading completed ***\n" << "*** Program execution begins ***\n" << std::endl;
+        prcs.execute(memory, accumulator, PC, instructionRegister, operationCode, operand);
+        return 0;
     }
 
     std::cout << "\n*** Program loading completed ***\n" << "*** Program execution begins ***\n" << std::endl;
-    prcs.execute(memory, accumulator, instructionCounter, instructionRegister, operationCode, operand);
+    prcs.execute(memory, accumulator, PC, instructionRegister, operationCode, operand);
     return 0;
 }
