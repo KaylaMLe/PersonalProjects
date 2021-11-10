@@ -5,24 +5,24 @@
 using namespace runtime;
 
 const size_t MEM_SIZE{ 100 };
-// execute sml
+// executes instructions
 // return codes
 //// 0: normal run
 //// 1: invalid operation code
 //// 2: integer underflow
 //// 3: integer overflow
 //// 4: divide by 0
-int processes::execute(int memory[], int accumulator, int instructionCounter, int instructionRegister, int operationCode, int operand) {
+int processes::execute(int memory[], int accumulator, int PC, int instructionRegister, int operationCode, int operand) {
     // all possible operation codes
     enum validCode {
         read = 10, write = 11, // io
         load = 20, store = 21, // load store
         add = 30, subtract = 31, divide = 32, multiply = 33, // math
-        branch = 40, branchneg = 41, branchzero = 42, halt = 43 // transfer of control
+        branch = 40, branchneg = 41, branchzero = 42, branchcarry = 43, branchoverflow = 44, halt = 45 // transfer of control
     };
 
-    while (instructionCounter < MEM_SIZE) {
-        instructionRegister = memory[instructionCounter];
+    while (PC < MEM_SIZE) {
+        instructionRegister = memory[PC];
         operand = instructionRegister % 100;
 
         // "a specific location in memory" = memory[operand]
@@ -37,97 +37,131 @@ int processes::execute(int memory[], int accumulator, int instructionCounter, in
             if (memory[operand] < -9999) {
                 std::cout << "\n*** Integer underflow at " << std::setw(2) << std::noshowpos << operand << " ***\n"
                     << "*** Simpletron execution abnormally terminated ***\n" << std::endl;
-                processes::memdump(memory, accumulator, instructionCounter, instructionRegister, operationCode, operand);
+                processes::memdump(memory, accumulator, PC, instructionRegister, operationCode, operand);
                 return 2;
             }
 
             if (memory[operand] > 9999) {
                 std::cout << "\n*** Integer overflow at " << std::setw(2) << std::noshowpos << operand << " ***\n"
                     << "*** Simpletron execution abnormally terminated ***\n" << std::endl;
-                processes::memdump(memory, accumulator, instructionCounter, instructionRegister, operationCode, operand);
+                processes::memdump(memory, accumulator, PC, instructionRegister, operationCode, operand);
                 return 3;
             }
 
-            instructionCounter++;
+            PC++;
             break;
         case write:
             std::cout << std::setw(2) << std::noshowpos << operand << ": " << std::setw(5) << std::showpos << std::internal << memory[operand] << std::endl;
-            instructionCounter++;
+            PC++;
             break;
-            // load and store
+        // load and store
         case load:
             accumulator = memory[operand];
-            instructionCounter++;
+            PC++;
             break;
         case store:
             memory[operand] = accumulator;
-            instructionCounter++;
+            PC++;
             break;
-            // arithmetic
+        // arithmetic
+        // checks for an error
         case add:
             accumulator += memory[operand];
-            instructionCounter++;
-
+            PC++;
+            processes::updateFlags(accumulator);
             if (processes::matherror(memory, accumulator, operationCode, operand)) {
-                processes::memdump(memory, accumulator, instructionCounter, instructionRegister, operationCode, operand);
+                processes::memdump(memory, accumulator, PC, instructionRegister, operationCode, operand);
                 return 3;
             }
 
             break;
         case subtract:
             accumulator -= memory[operand];
-            instructionCounter++;
-
+            PC++;
+            processes::updateFlags(accumulator);
             if (processes::matherror(memory, accumulator, operationCode, operand)) {
-                processes::memdump(memory, accumulator, instructionCounter, instructionRegister, operationCode, operand);
+                processes::memdump(memory, accumulator, PC, instructionRegister, operationCode, operand);
                 return 2;
             }
 
             break;
         case divide:
             accumulator /= memory[operand];
-            instructionCounter++;
-
+            PC++;
+            processes::updateFlags(accumulator);
             if (processes::matherror(memory, accumulator, operationCode, operand)) {
-                processes::memdump(memory, accumulator, instructionCounter, instructionRegister, operationCode, operand);
+                processes::memdump(memory, accumulator, PC, instructionRegister, operationCode, operand);
                 return 4;
             }
 
             break;
         case multiply:
             accumulator *= memory[operand];
-            instructionCounter++;
-
+            PC++;
+            processes::updateFlags(accumulator);
             if (matherror(memory, accumulator, operationCode, operand)) {
-                processes::memdump(memory, accumulator, instructionCounter, instructionRegister, operationCode, operand);
+                processes::memdump(memory, accumulator, PC, instructionRegister, operationCode, operand);
                 return 2;
             }
 
             break;
-            // transfer of control
+        // transfer of control
         case branch:
-            instructionCounter = operand;
+            PC = operand;
             break;
         case branchneg:
-            if (accumulator < 0) {
-                instructionCounter = operand;
+            if (CPSR[0]) {
+                PC = operand;
             }
             break;
         case branchzero:
-            if (accumulator == 0) {
-                instructionCounter = operand;
+            if (CPSR[1]) {
+                PC = operand;
             }
             break;
+        case branchcarry:
+            if (CPSR[2]) {
+                PC = operand;
+            }
+        case branchoverflow:
+            if (CPSR[3]) {
+                PC = operand;
+            }
         case halt:
             std::cout << "\n*** Simpletron execution terminated ***\n" << std::endl;
-            processes::memdump(memory, accumulator, instructionCounter, instructionRegister, operationCode, operand);
+            processes::memdump(memory, accumulator, PC, instructionRegister, operationCode, operand);
             return 0;
-            // invalid op code error
+        // invalid op code error
         default:
             std::cout << "\n*** Invalid operation code ***\n" << "*** Simpletron execution abnormally terminated ***\n" << std::endl;
-            processes::memdump(memory, accumulator, instructionCounter, instructionRegister, operationCode, operand);
+            processes::memdump(memory, accumulator, PC, instructionRegister, operationCode, operand);
             return 1;
         }
+    }
+}
+
+void processes::updateFlags(int accumulator) {
+    // negative
+    if (accumulator < 0) {
+        processes::CPSR[0] = true;
+    }
+    else {
+        processes::CPSR[0] = false;
+    }
+    // zero
+    if (accumulator == 0) {
+        processes::CPSR[1] = true;
+    }
+    else {
+        processes::CPSR[1] = false;
+    }
+    // for carry I would need to look at binary arithmetic and checking that somehow
+    // overflow
+    if (accumulator > 9999) {
+        processes::CPSR[3] = true;
+    }
+    else {
+        processes::CPSR[3] = false;
     }
 }
 
@@ -154,9 +188,9 @@ bool processes::matherror(int memory[], int accumulator, int operationCode, int 
 }
 
 // displays registries and memory
-void processes::memdump(int memory[], int accumulator, int instructionCounter, int instructionRegister, int operationCode, int operand) {
+void processes::memdump(int memory[], int accumulator, int PC, int instructionRegister, int operationCode, int operand) {
     std::cout << "REGISTER:\n" << "accumulator\t\t" << std::setw(5) << std::showpos << std::internal << accumulator << std::endl
-        << "instructionCounter\t" << std::setw(2) << std::noshowpos << instructionCounter << std::endl
+        << "PC\t" << std::setw(2) << std::noshowpos << PC << std::endl
         << "instructionRegister\t" << std::setw(5) << std::showpos << instructionRegister << std::endl
         << "operationCode\t\t" << std::setw(2) << std::noshowpos << operationCode << std::endl
         << "operand\t\t\t" << std::setw(2) << std::noshowpos << operand << std::endl << std::endl;
