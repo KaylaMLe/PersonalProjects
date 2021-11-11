@@ -28,3 +28,5 @@ In the command line, enter the current card's suit followed by its value. The mo
 
 * 1.0 (November 4, 2021)
     * Successfully calculates chances of the next card's value and recognizes cards as seen and not yet seen
+* 1.1 (November 10, 2021)
+	* Condensed lists of cards seen into one 2D list
