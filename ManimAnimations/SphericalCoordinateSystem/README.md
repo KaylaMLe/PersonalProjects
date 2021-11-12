@@ -1,5 +1,5 @@
 ## Spherical Coordinate System
-Show the different components of the spherical coordinate system and typical labelling.
+Show the different components and typical labelling of the spherical coordinate system.
 
 ## Release History
 * 0.1 (October 29, 2021)
@@ -8,3 +8,5 @@ Show the different components of the spherical coordinate system and typical lab
 	* Adjusted axes to center on the origing and added rectangular labels
 * 0.3 (November 9, 2021)
 	* Added a magnitude vector and adjusted all mobjects' depths
+* 0.4 (November 11, 2021)
+	* Animated R vector moving as theta arc is lengthened
