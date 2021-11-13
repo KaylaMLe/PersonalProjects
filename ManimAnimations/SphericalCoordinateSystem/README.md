@@ -10,3 +10,5 @@ Show the different components and typical labelling of the spherical coordinate 
 	* Added a magnitude vector and adjusted all mobjects' depths
 * 0.4 (November 11, 2021)
 	* Animated R vector moving as theta arc is lengthened
+* 1.0 (November 12, 2021)
+	* Completed animation of all three components (r, theta, and phi)

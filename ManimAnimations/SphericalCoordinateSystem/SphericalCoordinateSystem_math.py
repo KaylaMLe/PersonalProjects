@@ -1,5 +1,5 @@
 # TODO:
-# animate phi arc
+# display components in coordinate form
 # create copy with physics labels conventions
 
 # uses mathematical (non-ISO) labelling conventions
@@ -38,27 +38,45 @@ class SphericalCoordinateSystem(Scene):
         label_R = Text("R", color=RED, font_size=36)
         label_R.next_to(vector_R, LEFT)
 
-        end_RT = Dot([0.5, -2.75, 0])
+        end_RT = Dot([1, -2.75, 0])
         vector_RT = Arrow(origin.get_center(), end_RT.get_center(), color=RED, buff=0)
         label_RT = label_R.copy()
         label_RT.next_to(vector_RT, LEFT)
 
+        # theta component
+        theta = Arc(radius=2.89, start_angle=3.93, angle=1.13, arc_center=[0., 0., 0.], color=BLUE)
+        label_theta = Text("θ", color=BLUE, font_size=36)
+        label_theta.next_to(theta, DOWN)
+
         self.play(Create(vector_R))
-        self.wait(0.25)
+        self.wait(0.5)
         self.add(label_R)
         self.wait(0.5)
 
         # animate axes creation and add labels
         self.play(Create(axis_X), Create(axis_Y), Create(axis_Z))
         self.bring_to_front(vector_R)
-        self.wait(0.25)
+        self.wait(0.5)
         self.add(label_X, label_Y, label_Z)
         self.wait(0.5)
-        self.play(Transform(vector_R, vector_RT), Transform(label_R, label_RT))
+        self.play(Transform(vector_R, vector_RT), Transform(label_R, label_RT), Create(theta), Create(label_theta))
+        self.wait(1)
 
-        # theta component
-        theta = Arc(radius=2.75, start_angle=3.93, angle=0.961, arc_center=[0., 0., 0.], color=BLUE)
-        label_theta = Text("θ", color=BLUE, font_size=36)
-        label_theta.next_to(theta, DOWN)
-        self.play(Create(theta), Create(label_theta))
-        self.wait(0.5)
+        # vector r placeholder for phi translation
+        r_theta = DashedLine(origin.get_center(), end_RT.get_center())
+        self.add(r_theta)
+
+        # phi translation
+        end_RTP = Dot([1.64, 2.25, 0])
+        vector_RTP = Arrow(origin.get_center(), end_RTP.get_center(), color=RED, buff=0)
+        label_RTP = label_R.copy()
+        label_RTP.next_to(vector_RTP, RIGHT)
+
+        # phi component
+        phi = Arc(radius=3.1, start_angle=5.21, angle=1.89, arc_center=[-0.5, 0., 0.], color=GREEN)
+        label_phi = Text("φ", color=GREEN, font_size=36)
+        label_phi.next_to(phi, RIGHT)
+
+        self.play(Transform(vector_R, vector_RTP), Transform(label_R, label_RTP), Create(phi), Create(label_phi))
+        # self.bring_to_front(label_RTP)
+        self.wait(1)
