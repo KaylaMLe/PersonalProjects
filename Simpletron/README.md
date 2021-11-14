@@ -19,7 +19,7 @@ g++ Simpletron.cpp exe_overview.cpp -o Simpletron
 Enter operation codes (see ``OperationCodes`` for a full list) and target addresses into the terminal to initialize a program. After execution, all register and memory values are displayed.
 
 ## Release History
-
+*Status: In progress*
 * 1.0 (October 26, 2021)
     * First version: basic program structure and functions present
 * 1.1 (October 31, 2021)

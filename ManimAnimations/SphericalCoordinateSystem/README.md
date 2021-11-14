@@ -2,6 +2,7 @@
 Show the different components and typical labelling of the spherical coordinate system.
 
 ## Release History
+*Status: In progress*
 * 0.1 (October 29, 2021)
     * Added axes in 2D with animation
 * 0.2 (October 30, 2021)
