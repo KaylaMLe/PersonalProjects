@@ -1,14 +1,7 @@
-# TODO:
-# convert the list for the card input into a tuple
-# allow multiple decks
-# game config (if next card is the same value, count it as Higher/Lower/either)
-
-# This version of High/Low is played with one deck.
-# If the next card pulled has the same value as the current card, a choice of either High or Low would pass.
-
 # Validates entered suit value and re-prompts the user if necessary
 def SuitValue(suit: str) -> str:
-    if suit.lower() == "diamonds" or suit.lower() == "hearts" or suit.lower() == "clubs" or suit.lower() == "spades":
+    if suit.lower() == "diamonds" or suit.lower() == "hearts" or suit.lower() == "clubs" \
+            or suit.lower() == "spades" or suit.lower() == "new":
         return suit.lower()
     else:
         SuitValue(input("Please reenter the suit.: "))
@@ -75,34 +68,37 @@ def HighLow(high: float, low: float, tot: float) -> str:
 # suit[i] is 0 when the card has not been seen or 1 when the card has been seen
 deck = 4 * [13 * [0]]
 
-# Using a list and not a tuple to store the input card suit and value to allow validation
-currentCard = list()
-currentCard.append(SuitValue(input("First card's suit: ")))
-currentCard.append(0)
+while True:
+    # Using a list and not a tuple to store the input card suit and value to allow validation
+    currentCard = list()
+    currentCard.append(SuitValue(input("First card's suit: ")))
+    currentCard.append(0)
 
-# Re-prompt if the card's given value is less than 2 or more than ace
-while currentCard[1] < 2 or currentCard[1] > 14:
-    currentCard[1] = int(input("First card's value: "))
-
-# Mark the entered and validated card as seen
-UpdateCardsSeen(currentCard, deck)
-# Calculates the number of cards that haven't been seen and are lower or higher
-lower = LowerCards(currentCard, deck)
-higher = HigherCards(currentCard, deck)
-total = TotalCardsLeft(deck)
-
-print(HighLow(higher, lower, total))
-# re-prompts and recalculates the most likely outcome of the next card
-while total < 52:
-    currentCard[0] = SuitValue(input("Next card's suit: "))
-    currentCard[1] = int(input("Next card's value: "))
-
+    # Re-prompt if the card's given value is less than 2 or more than ace
     while currentCard[1] < 2 or currentCard[1] > 14:
-        currentCard[1] = int(input("Next card's value: "))
+        currentCard[1] = int(input("First card's value: "))
 
+    # Mark the entered and validated card as seen
     UpdateCardsSeen(currentCard, deck)
+    # Calculates the number of cards that haven't been seen and are lower or higher
     lower = LowerCards(currentCard, deck)
     higher = HigherCards(currentCard, deck)
     total = TotalCardsLeft(deck)
 
     print(HighLow(higher, lower, total))
+    # re-prompts and recalculates the most likely outcome of the next card
+    while total < 52:
+        currentCard[0] = SuitValue(input("Next card's suit ('new' for new game): "))
+        if currentCard[0] == "new":
+            break
+        currentCard[1] = int(input("Next card's value: "))
+
+        while currentCard[1] < 2 or currentCard[1] > 14:
+            currentCard[1] = int(input("Next card's value: "))
+
+        UpdateCardsSeen(currentCard, deck)
+        lower = LowerCards(currentCard, deck)
+        higher = HigherCards(currentCard, deck)
+        total = TotalCardsLeft(deck)
+
+        print(HighLow(higher, lower, total))
