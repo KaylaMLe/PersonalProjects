@@ -22,7 +22,7 @@ int main()
     int memory[MEM_SIZE]{ 0 };
 
     // registers
-    int accumulator{ 0 }, int instructionRegister{ 0 }, int PC{ 0 }, int operationCode, int operand{ 0 };
+    int accumulator{ 0 }, instructionRegister{ 0 }, PC{ 0 }, operationCode{ 0 }, operand{ 0 };
 
     std::cout << "\a*** Welcome to Simpletron! ***\n"// note the \a
         << "*** Please enter your program one instruction ***\n"
