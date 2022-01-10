@@ -1,5 +1,5 @@
 # TODO:
-# display components in coordinate form
+# fine-tune label spacing and placement
 # create copy with physics labels conventions
 
 # uses mathematical (non-ISO) labelling conventions
@@ -48,6 +48,12 @@ class SphericalCoordinateSystem(Scene):
         label_theta = Text("θ", color=BLUE, font_size=36)
         label_theta.next_to(theta, DOWN)
 
+        # coordinate form label
+        label_coord = Text("(R, θ)", font_size=48)
+        label_coord_phi = Text("(R, θ, φ)", font_size=48)
+        label_coord.next_to(axis_Z, LEFT)
+        label_coord_phi.next_to(axis_Z, LEFT)
+
         self.play(Create(vector_R))
         self.wait(0.5)
         self.add(label_R)
@@ -60,6 +66,7 @@ class SphericalCoordinateSystem(Scene):
         self.add(label_X, label_Y, label_Z)
         self.wait(0.5)
         self.play(Transform(vector_R, vector_RT), Transform(label_R, label_RT), Create(theta), Create(label_theta))
+        self.play(Create(label_coord))
         self.wait(1)
 
         # vector r placeholder for phi translation
@@ -78,5 +85,6 @@ class SphericalCoordinateSystem(Scene):
         label_phi.next_to(phi, RIGHT)
 
         self.play(Transform(vector_R, vector_RTP), Transform(label_R, label_RTP), Create(phi), Create(label_phi))
+        self.play(Transform(label_coord, label_coord_phi))
         # self.bring_to_front(label_RTP)
         self.wait(1)

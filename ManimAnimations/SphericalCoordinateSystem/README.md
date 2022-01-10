@@ -13,3 +13,5 @@ Show the different components and typical labelling of the spherical coordinate 
 	* Animated R vector moving as theta arc is lengthened
 * 1.0 (November 12, 2021)
 	* Completed animation of all three components (r, theta, and phi)
+* 1.1 (January 9, 2022)
+	* Coordinate form of components now displays properly
