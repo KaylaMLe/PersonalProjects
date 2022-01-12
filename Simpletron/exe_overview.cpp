@@ -173,9 +173,8 @@ bool processes::matherror(int memory[], int accumulator, int operationCode, int 
         return true;
     }
     else if (accumulator > 9999) {// too high
-        std::cout << "\n*** Accumulator overflow at " << std::setw(2) << std::noshowpos << operand << " ***\n"
-            << "*** Simpletron execution abnormally terminated ***\n" << std::endl;
-        return true;
+        std::cout << "\n*** Accumulator overflow at " << std::setw(2) << std::noshowpos << operand << " ***\n" << std::endl;
+        return false;
     }
     else if (operationCode == 32 && memory[operand] == 0) {// divide by zero
         std::cout << "\n*** Attempt to divide by zero at " << std::setw(2) << std::noshowpos << operand << " ***\n"
@@ -190,7 +189,7 @@ bool processes::matherror(int memory[], int accumulator, int operationCode, int 
 // displays registries and memory
 void processes::memdump(int memory[], int accumulator, int PC, int instructionRegister, int operationCode, int operand) {
     std::cout << "REGISTER:\n" << "accumulator\t\t" << std::setw(5) << std::showpos << std::internal << accumulator << std::endl
-        << "PC\t" << std::setw(2) << std::noshowpos << PC << std::endl
+        << "PC\t\t\t" << std::setw(2) << std::noshowpos << PC << std::endl
         << "instructionRegister\t" << std::setw(5) << std::showpos << instructionRegister << std::endl
         << "operationCode\t\t" << std::setw(2) << std::noshowpos << operationCode << std::endl
         << "operand\t\t\t" << std::setw(2) << std::noshowpos << operand << std::endl << std::endl;
@@ -205,5 +204,23 @@ void processes::memdump(int memory[], int accumulator, int PC, int instructionRe
         }
 
         std::cout << std::endl;
+    }
+
+    std::string negative_zero_carry_overflow[4]{ "negative", "zero", "carry", "overflow" };
+    if (CPSR[0] == true) {
+        negative_zero_carry_overflow[0] = "NEGATIVE";
+    }
+    if (CPSR[1] == true) {
+        negative_zero_carry_overflow[1] = "ZERO";
+    }
+    if (CPSR[2] == true) {
+        negative_zero_carry_overflow[2] = "CARRY";
+    }
+    if (CPSR[3] == true) {
+        negative_zero_carry_overflow[3] = "OVERFLOW";
+    }
+    std::cout << std::setfill(' ') << std::setw(0);
+    for (int i{ 0 }; i < 4; i++) {
+        std::cout << negative_zero_carry_overflow[i] << '\t';
     }
 }

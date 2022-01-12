@@ -28,6 +28,8 @@ Enter operation codes (see ``OperationCodes`` for a full list) and target addres
 	* Added CPSR flags and checks them to branch. Also added branchoverflow
 * 1.21 (January 8, 2022)
 	* Hotfix: Latest version now compiles without error
+* 1.22 (January 11, 2022)
+	* Additional bug fixes: Words are now properly stored without causing an early memdump.
 <!-- Markdown link & img dfn's -->
 [npm-image]: https://img.shields.io/npm/v/datadog-metrics.svg?style=flat-square
 [npm-url]: https://npmjs.org/package/datadog-metrics

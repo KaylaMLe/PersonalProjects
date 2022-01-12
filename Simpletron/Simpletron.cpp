@@ -24,7 +24,7 @@ int main()
     // registers
     int accumulator{ 0 }, instructionRegister{ 0 }, PC{ 0 }, operationCode{ 0 }, operand{ 0 };
 
-    std::cout << "\a*** Welcome to Simpletron! ***\n"// note the \a
+    std::cout << "\a*** Welcome to Simpletron! ***\n"// note the \a (alarm)
         << "*** Please enter your program one instruction ***\n"
         << "*** (or data word) at a time. I will type the ***\n"
         << "*** location number and a question mark (?). ***\n"
@@ -46,11 +46,9 @@ int main()
             std::cin >> memory[i];
         } while ((memory[i] < -9999 || memory[i] > +9999) && memory[i] != -99999);// if not a four digit integer, re-prompt
 
-        // stop loading when memory[i] == -99999
-        memory[i] = 0;// stop code not stored
-        std::cout << "\n*** Program loading completed ***\n" << "*** Program execution begins ***\n" << std::endl;
-        prcs.execute(memory, accumulator, PC, instructionRegister, operationCode, operand);
-        return 0;
+        if (memory[i] == -99999) {
+            break;
+        }
     }
 
     std::cout << "\n*** Program loading completed ***\n" << "*** Program execution begins ***\n" << std::endl;
