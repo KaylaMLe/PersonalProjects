@@ -1,8 +1,8 @@
 # TODO:
-# fine-tune label spacing and placement
 # create copy with physics labels conventions
 
 # uses mathematical (non-ISO) labelling conventions
+# There are "Expected Color, got string" errors, but colors in uppercase follow Manim conventions.
 from manim import *
 
 
@@ -10,11 +10,11 @@ class SphericalCoordinateSystem(Scene):
     def construct(self):
         origin = Dot([0, 0, 0])
 
-        # creates x axis from the upper left of the screen to the bottom right
+        # creates x-axis from the upper left of the screen to the bottom right
         end_X = Dot([-3, -3, 0])
         axis_X = Arrow(origin.get_center(), end_X.get_center(), buff=0)
         axis_X.z_index = 0
-        # creates y axis from the bottom left of the screen to the upper right
+        # creates y-axis from the bottom left of the screen to the upper right
         end_Y = Dot([3, -3, 0])
         axis_Y = Arrow(origin.get_center(), end_Y.get_center(), buff=0)
         axis_Y.z_index = 0
@@ -49,10 +49,17 @@ class SphericalCoordinateSystem(Scene):
         label_theta.next_to(theta, DOWN)
 
         # coordinate form label
-        label_coord = Text("(R, θ)", font_size=48)
-        label_coord_phi = Text("(R, θ, φ)", font_size=48)
-        label_coord.next_to(axis_Z, LEFT)
-        label_coord_phi.next_to(axis_Z, LEFT)
+        left_parenthesis = Text("(", font_size=48)
+        right_parenthesis = Text(")", font_size=48)
+        r_coord = Text("R, ", color=RED, font_size=48)
+        theta_coord = Text("θ", color=BLUE, font_size=48)
+        theta_coord2 = Text("θ, ", color=BLUE, font_size=48)
+        phi_coord = Text("φ", color=GREEN, font_size=48)
+
+        right_parenthesis.next_to(axis_Z, LEFT)
+        theta_coord.next_to(right_parenthesis, LEFT)
+        r_coord.next_to(theta_coord, LEFT)
+        left_parenthesis.next_to(r_coord, LEFT)
 
         self.play(Create(vector_R))
         self.wait(0.5)
@@ -66,8 +73,12 @@ class SphericalCoordinateSystem(Scene):
         self.add(label_X, label_Y, label_Z)
         self.wait(0.5)
         self.play(Transform(vector_R, vector_RT), Transform(label_R, label_RT), Create(theta), Create(label_theta))
-        self.play(Create(label_coord))
+        self.play(Create(left_parenthesis), Create(r_coord), Create(theta_coord), Create(right_parenthesis))
         self.wait(1)
+
+        # coordinate label repositioning to add phi component
+        phi_coord.next_to(right_parenthesis, LEFT)
+        theta_coord2.next_to(phi_coord, LEFT)
 
         # vector r placeholder for phi translation
         r_theta = DashedLine(origin.get_center(), end_RT.get_center())
@@ -85,6 +96,8 @@ class SphericalCoordinateSystem(Scene):
         label_phi.next_to(phi, RIGHT)
 
         self.play(Transform(vector_R, vector_RTP), Transform(label_R, label_RTP), Create(phi), Create(label_phi))
-        self.play(Transform(label_coord, label_coord_phi))
-        # self.bring_to_front(label_RTP)
+        self.play(FadeOut(left_parenthesis), FadeOut(r_coord), FadeOut(theta_coord))
+        r_coord.next_to(theta_coord2, LEFT)
+        left_parenthesis.next_to(r_coord, LEFT)
+        self.play(Create(phi_coord), Transform(theta_coord, theta_coord2), Create(r_coord), Create(left_parenthesis))
         self.wait(1)

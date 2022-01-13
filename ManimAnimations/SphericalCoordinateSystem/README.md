@@ -15,3 +15,5 @@ Show the different components and typical labelling of the spherical coordinate 
 	* Completed animation of all three components (r, theta, and phi)
 * 1.1 (January 9, 2022)
 	* Coordinate form of components now displays properly
+* 1.2 (January 12, 2022)
+	* Coordinate label is now color coded
