@@ -2,7 +2,7 @@
 Show the different components and typical labelling of the spherical coordinate system.
 
 ## Release History
-*Status: In progress*
+*Status: Finished*
 * 0.1 (October 29, 2021)
     * Added axes in 2D with animation
 * 0.2 (October 30, 2021)
@@ -17,3 +17,5 @@ Show the different components and typical labelling of the spherical coordinate 
 	* Coordinate form of components now displays properly
 * 1.2 (January 12, 2022)
 	* Coordinate label is now color coded
+* 1.5 (January 15, 2022)
+	* Finished animation now has ISO convention version
