@@ -4,7 +4,7 @@
 * Language: C++
 
 ## Installation
-
+* The pre-compiled executable is compatible with Windows.*
 With GCC on Windows, Mac OS X, and Unix systems:
 
 ```sh
@@ -30,6 +30,9 @@ Enter operation codes (see ``OperationCodes`` for a full list) and target addres
 	* Hotfix: Latest version now compiles without error
 * 1.22 (January 11, 2022)
 	* Additional bug fixes: Words are now properly stored without causing an early memdump.
+* 1.3 (January 16, 2022)
+	* Overflows trigger an alert without ending execution. Flags are properly updated.
+*I plan to spend more time on my next update to enable reading and writing a program to a file.*
 <!-- Markdown link & img dfn's -->
 [npm-image]: https://img.shields.io/npm/v/datadog-metrics.svg?style=flat-square
 [npm-url]: https://npmjs.org/package/datadog-metrics

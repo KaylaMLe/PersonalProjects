@@ -42,10 +42,8 @@ int processes::execute(int memory[], int accumulator, int PC, int instructionReg
             }
 
             if (memory[operand] > 9999) {
-                std::cout << "\n*** Integer overflow at " << std::setw(2) << std::noshowpos << operand << " ***\n"
-                    << "*** Simpletron execution abnormally terminated ***\n" << std::endl;
-                processes::memdump(memory, accumulator, PC, instructionRegister, operationCode, operand);
-                return 3;
+                std::cout << "\n*** Integer overflow at " << std::setw(2) << std::noshowpos << operand << " ***\n" << std::endl;
+                processes::updateFlags(accumulator);
             }
 
             PC++;
@@ -174,6 +172,7 @@ bool processes::matherror(int memory[], int accumulator, int operationCode, int 
     }
     else if (accumulator > 9999) {// too high
         std::cout << "\n*** Accumulator overflow at " << std::setw(2) << std::noshowpos << operand << " ***\n" << std::endl;
+        processes::updateFlags(accumulator);
         return false;
     }
     else if (operationCode == 32 && memory[operand] == 0) {// divide by zero

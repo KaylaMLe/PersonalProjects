@@ -1,7 +1,5 @@
 // TODO:
 // overflow but not crash
-// display CPSR when memdumping
-// Warning	C4715	'runtime::processes::execute': not all control paths return a value
 // implement carry flag
 // optimize opcode checking during execution (impractical and slow to check an entire case/switch of every code)
 // rework to register 0 - 16
