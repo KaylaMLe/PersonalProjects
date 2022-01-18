@@ -32,11 +32,5 @@ Enter operation codes (see ``OperationCodes`` for a full list) and target addres
 	* Additional bug fixes: Words are now properly stored without causing an early memdump.
 * 1.3 (January 16, 2022)
 	* Overflows trigger an alert without ending execution. Flags are properly updated.
-*I plan to spend more time on my next update to enable reading and writing a program to a file.*
-<!-- Markdown link & img dfn's -->
-[npm-image]: https://img.shields.io/npm/v/datadog-metrics.svg?style=flat-square
-[npm-url]: https://npmjs.org/package/datadog-metrics
-[npm-downloads]: https://img.shields.io/npm/dm/datadog-metrics.svg?style=flat-square
-[travis-image]: https://img.shields.io/travis/dbader/node-datadog-metrics/master.svg?style=flat-square
-[travis-url]: https://travis-ci.org/dbader/node-datadog-metrics
-[wiki]: https://github.com/yourname/yourproject/wiki
+* 1.4 (January 17, 2022)
+	* End of execution memdump now also written into a file

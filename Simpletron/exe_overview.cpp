@@ -1,6 +1,7 @@
 # include "exe_overview.h"
 # include <iostream>
 # include <iomanip>
+# include <fstream>
 
 using namespace runtime;
 
@@ -187,6 +188,7 @@ bool processes::matherror(int memory[], int accumulator, int operationCode, int 
 
 // displays registries and memory
 void processes::memdump(int memory[], int accumulator, int PC, int instructionRegister, int operationCode, int operand) {
+    processes::file_memdump(memory, accumulator, PC, instructionRegister, operationCode, operand);
     std::cout << "REGISTER:\n" << "accumulator\t\t" << std::setw(5) << std::showpos << std::internal << accumulator << std::endl
         << "PC\t\t\t" << std::setw(2) << std::noshowpos << PC << std::endl
         << "instructionRegister\t" << std::setw(5) << std::showpos << instructionRegister << std::endl
@@ -221,5 +223,50 @@ void processes::memdump(int memory[], int accumulator, int PC, int instructionRe
     std::cout << std::setfill(' ') << std::setw(0);
     for (int i{ 0 }; i < 4; i++) {
         std::cout << negative_zero_carry_overflow[i] << '\t';
+    }
+}
+
+// basically a copy of regular memdump but written into a file
+void processes::file_memdump(int memory[], int accumulator, int PC, int instructionRegister, int operationCode, int operand) {
+    std::ofstream logs;
+    logs.open("Simpletron_memdump.txt");
+    if (logs.is_open()) {
+        logs << "REGISTER:\n" << "accumulator\t\t" << std::setw(5) << std::showpos << std::internal << accumulator << std::endl
+            << "PC\t\t\t" << std::setw(2) << std::noshowpos << PC << std::endl
+            << "instructionRegister\t" << std::setw(5) << std::showpos << instructionRegister << std::endl
+            << "operationCode\t\t" << std::setw(2) << std::noshowpos << operationCode << std::endl
+            << "operand\t\t\t" << std::setw(2) << std::noshowpos << operand << std::endl << std::endl;
+
+        logs << "MEMORY:\n" << "\t0" << "\t1" << "\t2" << "\t3" << "\t4" << "\t5" << "\t6" << "\t7" << "\t8" << "\t9" << std::endl;
+
+        for (int i{ 0 }; i < 10; i++) {// ten rows
+            logs << std::setw(0) << std::noshowpos << i * 10 << "\t";
+
+            for (int j{ 0 }; j < 10; j++) {// ten columns
+                logs << std::setw(5) << std::showpos << std::internal << memory[j + (i * 10)] << "\t";// column plus row
+            }
+
+            logs << std::endl;
+        }
+
+        std::string negative_zero_carry_overflow[4]{ "negative", "zero", "carry", "overflow" };
+        if (CPSR[0] == true) {
+            negative_zero_carry_overflow[0] = "NEGATIVE";
+        }
+        if (CPSR[1] == true) {
+            negative_zero_carry_overflow[1] = "ZERO";
+        }
+        if (CPSR[2] == true) {
+            negative_zero_carry_overflow[2] = "CARRY";
+        }
+        if (CPSR[3] == true) {
+            negative_zero_carry_overflow[3] = "OVERFLOW";
+        }
+        logs << std::setfill(' ') << std::setw(0);
+        for (int i{ 0 }; i < 4; i++) {
+            logs << negative_zero_carry_overflow[i] << '\t';
+        }
+
+        logs.close();
     }
 }
