@@ -1,0 +1,9 @@
+{
+    "files.associations": {
+        "iomanip": "cpp",
+        "exception": "cpp",
+        "typeinfo": "cpp",
+        "fstream": "cpp"
+    },
+    "editor.formatOnSave": true,
+}
