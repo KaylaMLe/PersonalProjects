@@ -2,23 +2,28 @@
 Below is a quick overview of my different projects in this repo.
 
 ## Simpletron
-*Status: In progress*
-* Language: C++ <br/>
+*Status: Re-implementation in progress*
+* Language: C++
+
 Use a high-level language on an x86_64 machine to emulate ARM assembly programming
+
 
 ## Animations in Manim
 *Status: In progress*
-* Language: Python \
+* Language: Python
+
 Apply mathematic knowledge to digital animated structures to teach others math
 
 ## HighLow
 *Status: finished*
-* Language: Python  
+* Language: Python
+
 Predict the most likely outcome of the next card flip in the card game High or Low
 
 ## Traffic Signal
 *Status: finished*
-* Language: ARM assembly  
+* Language: ARM assembly
+
 Use ARM assembly and WiringPi to control a set of LEDs with a Raspberry Pi
 
 ## Meta
