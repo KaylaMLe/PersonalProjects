@@ -1,14 +1,16 @@
+#include "simpletron-processing.h"
 #include <fstream>
 #include <iostream>
+#include <string>
 using namespace std;
 
 int main()
 {
     // asks the user to specify a file to run
     ifstream sourceFile;
-    string sourceFilePath;
+    string sourceFilePath{""};
 
-    while (!(sourceFile.is_open()))
+    while (!(sourceFile.is_open()) || sourceFilePath.length() < 3 || sourceFilePath.substr(sourceFilePath.length() - 4, 4) != ".txt")
     {
         cout << "Path to source file: ";
         cin >> sourceFilePath;
@@ -16,7 +18,9 @@ int main()
         cin.clear();
     }
 
-    cout << "file opened";
+    string opened = openTxtFile(sourceFile);
+    sourceFile.close();
+    cout << opened;
 
     return 0;
 }
