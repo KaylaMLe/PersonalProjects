@@ -2,10 +2,10 @@
 Below is a quick overview of my different projects in this repo.
 
 ## Simpletron
-*Status: Re-implementation in progress*
+*Status: In-Progress*
 * Language: C++
 
-Use a high-level language on an x86_64 machine to emulate ARM assembly programming
+Uses a high-level language to parse a text file and emulate ARM assembly programming
 
 
 ## Animations in Manim
