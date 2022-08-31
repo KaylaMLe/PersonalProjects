@@ -2,14 +2,15 @@
 #include <fstream>
 #include <iostream>
 #include <string>
+
 using namespace std;
 
 int main()
 {
-    // asks the user to specify a file to run
+
     ifstream sourceFile;
     string sourceFilePath{""};
-
+    // asks the user to specify a file to run until a valid tx file is given
     while (!(sourceFile.is_open()) || sourceFilePath.length() < 3 || sourceFilePath.substr(sourceFilePath.length() - 4, 4) != ".txt")
     {
         cout << "Path to source file: ";
@@ -18,9 +19,9 @@ int main()
         cin.clear();
     }
 
-    string opened = openTxtFile(sourceFile);
+    vector<string> opened = openTxtFile(sourceFile);
     sourceFile.close();
-    cout << opened;
+    executeFile(opened);
 
     return 0;
 }
