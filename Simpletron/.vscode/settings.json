@@ -48,7 +48,8 @@
         "ostream": "cpp",
         "sstream": "cpp",
         "stdexcept": "cpp",
-        "streambuf": "cpp"
+        "streambuf": "cpp",
+        "any": "cpp"
     },
     "editor.formatOnSave": true,
 }

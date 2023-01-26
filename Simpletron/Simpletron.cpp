@@ -10,7 +10,7 @@ int main()
 
     ifstream sourceFile;
     string sourceFilePath{""};
-    // asks the user to specify a file to run until a valid tx file is given
+    // asks the user to specify a file to run until a valid txt file is given
     while (!(sourceFile.is_open()) || sourceFilePath.length() < 3 || sourceFilePath.substr(sourceFilePath.length() - 4, 4) != ".txt")
     {
         cout << "Path to source file: ";
