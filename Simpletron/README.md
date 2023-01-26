@@ -30,3 +30,5 @@ g++ Simpletron.cpp exe_overview.cpp -o Simpletron
   * Started some major fixes to better align with the project's goal and use better software engineering practices
 * 2.01 (August 31, 2022)
   * Implemented text file processing to better ease use and testing. I'm going to shift focus to creating an abstract syntax tree to help build an understanding of how ARM assembly is compiled (compiled? executed?) and make implementing features of ARM assembly easier.
+* 2.1 (January 25, 2023)
+  * I've decided to end development on this project. It's more than I can tackle currently, and I have a lot of cool ideas for others. Maybe some day. :)

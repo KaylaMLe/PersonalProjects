@@ -1,2 +1,3 @@
 # ignore any compiled test binaries
 *.exe
+.vscode/

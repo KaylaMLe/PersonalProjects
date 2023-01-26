@@ -2,7 +2,7 @@
 Below is a quick overview of my different projects in this repo.
 
 ## Simpletron
-*Status: In-Progress*
+*Status: Hiatus*
 * Language: C++
 
 Uses a high-level language to parse a text file and emulate ARM assembly programming
