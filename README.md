@@ -9,19 +9,19 @@ Uses a high-level language to parse a text file and emulate ARM assembly program
 
 
 ## Animations in Manim
-*Status: In progress*
+*Status: Ongoing*
 * Language: Python
 
 Apply mathematic knowledge to digital animated structures to teach others math
 
 ## HighLow
-*Status: finished*
+*Status: Finished*
 * Language: Python
 
 Predict the most likely outcome of the next card flip in the card game High or Low
 
 ## Traffic Signal
-*Status: finished*
+*Status: Finished*
 * Language: ARM assembly
 
 Use ARM assembly and WiringPi to control a set of LEDs with a Raspberry Pi

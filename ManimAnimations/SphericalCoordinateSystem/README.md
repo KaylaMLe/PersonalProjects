@@ -1,6 +1,8 @@
 ## Spherical Coordinate System
 Show the different components and typical labelling of the spherical coordinate system.
 
+The rendered video with mathematics conventions can be found [here](https://youtu.be/CC-WRPpQ1so) and physics conventions can be found [here](https://youtu.be/tiqB7N-HII0).
+
 ## Release History
 *Status: Finished*
 * 0.1 (October 29, 2021)
