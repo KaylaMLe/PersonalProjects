@@ -14,7 +14,7 @@ class ptd_arrow:
         self.arrow.buff = buffer
 
     def set_layer(self, layerInd: int) -> None:
-        self.arrow.set_z_index()(layerInd)
+        self.arrow.set_z_index(layerInd)
 
 
 class SphericalCoordinateSystem(Scene):
