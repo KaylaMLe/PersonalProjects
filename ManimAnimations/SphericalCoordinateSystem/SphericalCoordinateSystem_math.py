@@ -1,6 +1,6 @@
 # uses mathematical (non-ISO) labelling conventions
-# There are "Expected Color, got string" errors, but colors in uppercase follow Manim conventions.
 from manim import *
+from typing import Optional
 
 
 # arrow with stored start and end coordinate arrays
@@ -9,6 +9,12 @@ class ptd_arrow:
         self.start = start
         self.end = end
         self.arrow = Arrow(start=self.start, end=self.end)
+
+    def set_buff(self, buffer: int) -> None:
+        self.arrow.buff = buffer
+
+    def set_layer(self, layerInd: int) -> None:
+        self.arrow.set_z_index()(layerInd)
 
 
 class SphericalCoordinateSystem(Scene):
@@ -24,29 +30,31 @@ class SphericalCoordinateSystem(Scene):
 
         # create and position labels for axes
         label_X = Text("X", font_size=48)
-        label_X.next_to(end_X, LEFT)
+        label_X.next_to(axis_x.end, LEFT)
         label_Y = Text("Y", font_size=48)
-        label_Y.next_to(end_Y, RIGHT)
+        label_Y.next_to(axis_y.end, RIGHT)
         label_Z = Text("Z", font_size=48)
-        label_Z.next_to(end_Z, UP)
+        label_Z.next_to(axis_z.end, UP)
 
         # creates vector r to display spherical coordinate components
-        end_R = Dot([-2.5, -2.5, 0])
-        vector_R = Arrow(origin.get_center(),
-                         end_R.get_center(), color=RED, buff=0)
-        vector_R.z_index = 1
-        label_R = Text("R", color=RED, font_size=36)
-        label_R.next_to(vector_R, LEFT)
+        vector_r = ptd_arrow(start=origin, end=[-2.5, -2.5, 0])
+        vector_r.arrow.set_color(RED)
+        vector_r.set_buff(0)
+        vector_r.set_layer(1)
 
-        end_RT = Dot([1, -2.75, 0])
-        vector_RT = Arrow(origin.get_center(),
-                          end_RT.get_center(), color=RED, buff=0)
+        label_R = Text("R", color=RED, font_size=36)
+        label_R.next_to(vector_r, LEFT)
+
+        vector_rt = ptd_arrow(start=origin, end=[1, -2.75, 0])
+        vector_rt.arrow.set_color(RED)
+        vector_rt.set_buff(0)
+
         label_RT = label_R.copy()
-        label_RT.next_to(vector_RT, LEFT)
+        label_RT.next_to(vector_rt, LEFT)
 
         # theta component
         theta = Arc(radius=2.89, start_angle=3.93, angle=1.13,
-                    arc_center=[0., 0., 0.], color=BLUE)
+                    arc_center=origin, color=BLUE)
         label_theta = Text("θ", color=BLUE, font_size=36)
         label_theta.next_to(theta, DOWN)
 
@@ -63,18 +71,18 @@ class SphericalCoordinateSystem(Scene):
         r_coord.next_to(theta_coord, LEFT)
         left_parenthesis.next_to(r_coord, LEFT)
 
-        self.play(Create(vector_R))
+        self.play(Create(vector_r))
         self.wait(0.5)
         self.add(label_R)
         self.wait(0.5)
 
         # animate axes creation and add labels
         self.play(Create(axis_x), Create(axis_y), Create(axis_z))
-        self.bring_to_front(vector_R)
+        self.bring_to_front(vector_r)
         self.wait(0.5)
         self.add(label_X, label_Y, label_Z)
         self.wait(0.5)
-        self.play(Transform(vector_R, vector_RT), Transform(
+        self.play(Transform(vector_r, vector_rt), Transform(
             label_R, label_RT), Create(theta), Create(label_theta))
         self.play(Create(left_parenthesis), Create(r_coord),
                   Create(theta_coord), Create(right_parenthesis))
@@ -101,7 +109,7 @@ class SphericalCoordinateSystem(Scene):
         label_phi = Text("φ", color=GREEN, font_size=36)
         label_phi.next_to(phi, RIGHT)
 
-        self.play(Transform(vector_R, vector_RTP), Transform(
+        self.play(Transform(vector_r, vector_RTP), Transform(
             label_R, label_RTP), Create(phi), Create(label_phi))
         self.play(FadeOut(left_parenthesis), FadeOut(
             r_coord), FadeOut(theta_coord))
