@@ -3,12 +3,14 @@ from manim import *
 from ArrowAnim import *
 
 
+# TODO: organize mobject creation and animation
+# obj oriented creation but procedural animation?
 class SphericalCoordinateSystem(Scene):
     def __init__(self) -> None:
         self.animationList = []
 
     def add_anim(self, animGroup: anim_group) -> None:
-        self.animationList.append(anim_group)
+        self.animationList.append(animGroup)
 
     def construct(self) -> None:
         origin = [0, 0, 0]
@@ -34,12 +36,6 @@ class SphericalCoordinateSystem(Scene):
         vector_rt.arrow.set_color(RED)
         vector_rt.arrow.buff = 0
 
-        # theta component
-        theta = Arc(radius=2.89, start_angle=3.93, angle=1.13,
-                    arc_center=origin, color=BLUE)
-        label_theta = Text("θ", color=BLUE, font_size=36)
-        label_theta.next_to(theta, DOWN)
-
         # coordinate form label
         left_parenthesis = Text("(", font_size=48)
         right_parenthesis = Text(")", font_size=48)
@@ -58,6 +54,12 @@ class SphericalCoordinateSystem(Scene):
         self.add_anim(anim_group(anim_type.ADD, 0.5, vector_r.label))
         self.add_anim(anim_group(anim_type.CREATE, 0,
                       axis_x.arrow, axis_y.arrow, axis_z.arrow))
+
+        # theta component
+        theta = Arc(radius=2.89, start_angle=3.93, angle=1.13,
+                    arc_center=origin, color=BLUE)
+        label_theta = Text("θ", color=BLUE, font_size=36)
+        label_theta.next_to(theta, DOWN)
 
         self.add_anim(anim_group(anim_type.FRONT, 0.5, vector_r.arrow))
         self.add_anim(anim_group(anim_type.ADD, 0.5,
