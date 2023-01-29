@@ -1,30 +1,17 @@
 # uses mathematical (non-ISO) labelling conventions
 from manim import *
-from numpy import ndarray
-
-
-# arrow with stored start and end coordinate arrays
-class ptd_arrow:
-    def __init__(self, end: any, start: any = [0, 0, 0]) -> None:
-        self.start = start
-        self.end = end
-        self.arrow = Arrow(start=self.start, end=self.end)
-
-    def set_layer(self, layerInd: int) -> None:
-        self.arrow.set_z_index(layerInd)
-
-    def add_label(self, text: str, pos: ndarray, fontSize: int = 48, nextToEnd: bool = True) -> None:
-        self.label = Text(text, font_size=fontSize)
-        if nextToEnd:
-            self.label.next_to(self.end, pos)
-        else:
-            self.label.next_to(self.arrow, pos)
+from ArrowAnim import *
 
 
 class SphericalCoordinateSystem(Scene):
-    def construct(self):
-        origin = [0, 0, 0]
+    def __init__(self) -> None:
+        self.animationList = []
 
+    def add_anim(self, animGroup: anim_group) -> None:
+        self.animationList.append(anim_group)
+
+    def construct(self) -> None:
+        origin = [0, 0, 0]
         # creates x-axis from the upper left of the screen to the bottom right
         axis_x = ptd_arrow(end=[-3, -3, 0])
         axis_x.add_label('X', LEFT)
@@ -61,7 +48,7 @@ class SphericalCoordinateSystem(Scene):
         theta_coord2 = Text("θ, ", color=BLUE, font_size=48)
         phi_coord = Text("φ", color=GREEN, font_size=48)
 
-        right_parenthesis.next_to(axis_z, LEFT)
+        right_parenthesis.next_to(axis_z.arrow, LEFT)
         theta_coord.next_to(right_parenthesis, LEFT)
         r_coord.next_to(theta_coord, LEFT)
         left_parenthesis.next_to(r_coord, LEFT)

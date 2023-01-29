@@ -3,7 +3,7 @@
 
 * Language: Python
 
-These animations cleanly disply the inner workings of math and how they relate to one another.
+These animations cleanly disply the inner workings of math and how they relate to one another. Also included are utilities scripts for some shared animations.
 
 ## Installation
 
