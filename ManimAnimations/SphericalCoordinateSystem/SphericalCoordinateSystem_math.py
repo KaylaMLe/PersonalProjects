@@ -1,6 +1,6 @@
 # uses mathematical (non-ISO) labelling conventions
 from manim import *
-from typing import Optional
+from numpy import ndarray
 
 
 # arrow with stored start and end coordinate arrays
@@ -10,11 +10,15 @@ class ptd_arrow:
         self.end = end
         self.arrow = Arrow(start=self.start, end=self.end)
 
-    def set_buff(self, buffer: int) -> None:
-        self.arrow.buff = buffer
-
     def set_layer(self, layerInd: int) -> None:
         self.arrow.set_z_index(layerInd)
+
+    def add_label(self, text: str, pos: ndarray, fontSize: int = 48, nextToEnd: bool = True) -> None:
+        self.label = Text(text, font_size=fontSize)
+        if nextToEnd:
+            self.label.next_to(self.end, pos)
+        else:
+            self.label.next_to(self.arrow, pos)
 
 
 class SphericalCoordinateSystem(Scene):
@@ -23,34 +27,25 @@ class SphericalCoordinateSystem(Scene):
 
         # creates x-axis from the upper left of the screen to the bottom right
         axis_x = ptd_arrow(start=origin, end=[-3, -3, 0])
+        axis_x.add_label('X', LEFT)
         # creates y-axis from the bottom left of the screen to the upper right
         axis_y = ptd_arrow(start=origin, end=[3, -3, 0])
+        axis_y.add_label('Y', RIGHT)
         # creates z axis from the bottom of the screen up
         axis_z = ptd_arrow(start=origin, end=[0, 3.1, 0])
-
-        # create and position labels for axes
-        label_X = Text("X", font_size=48)
-        label_X.next_to(axis_x.end, LEFT)
-        label_Y = Text("Y", font_size=48)
-        label_Y.next_to(axis_y.end, RIGHT)
-        label_Z = Text("Z", font_size=48)
-        label_Z.next_to(axis_z.end, UP)
+        axis_z.add_label('Z', UP)
 
         # creates vector r to display spherical coordinate components
         vector_r = ptd_arrow(start=origin, end=[-2.5, -2.5, 0])
+        vector_r.add_label('R', LEFT, 36, False)
         vector_r.arrow.set_color(RED)
-        vector_r.set_buff(0)
+        vector_r.arrow.buff = 0
         vector_r.set_layer(1)
 
-        label_R = Text("R", color=RED, font_size=36)
-        label_R.next_to(vector_r, LEFT)
-
         vector_rt = ptd_arrow(start=origin, end=[1, -2.75, 0])
+        vector_rt.add_label('R', LEFT, 36, False)
         vector_rt.arrow.set_color(RED)
-        vector_rt.set_buff(0)
-
-        label_RT = label_R.copy()
-        label_RT.next_to(vector_rt, LEFT)
+        vector_rt.arrow.buff = 0
 
         # theta component
         theta = Arc(radius=2.89, start_angle=3.93, angle=1.13,
