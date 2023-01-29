@@ -26,23 +26,23 @@ class SphericalCoordinateSystem(Scene):
         origin = [0, 0, 0]
 
         # creates x-axis from the upper left of the screen to the bottom right
-        axis_x = ptd_arrow(start=origin, end=[-3, -3, 0])
+        axis_x = ptd_arrow(end=[-3, -3, 0])
         axis_x.add_label('X', LEFT)
         # creates y-axis from the bottom left of the screen to the upper right
-        axis_y = ptd_arrow(start=origin, end=[3, -3, 0])
+        axis_y = ptd_arrow(end=[3, -3, 0])
         axis_y.add_label('Y', RIGHT)
         # creates z axis from the bottom of the screen up
-        axis_z = ptd_arrow(start=origin, end=[0, 3.1, 0])
+        axis_z = ptd_arrow(end=[0, 3.1, 0])
         axis_z.add_label('Z', UP)
 
         # creates vector r to display spherical coordinate components
-        vector_r = ptd_arrow(start=origin, end=[-2.5, -2.5, 0])
+        vector_r = ptd_arrow(end=[-2.5, -2.5, 0])
         vector_r.add_label('R', LEFT, 36, False)
         vector_r.arrow.set_color(RED)
         vector_r.arrow.buff = 0
         vector_r.set_layer(1)
 
-        vector_rt = ptd_arrow(start=origin, end=[1, -2.75, 0])
+        vector_rt = ptd_arrow(end=[1, -2.75, 0])
         vector_rt.add_label('R', LEFT, 36, False)
         vector_rt.arrow.set_color(RED)
         vector_rt.arrow.buff = 0
