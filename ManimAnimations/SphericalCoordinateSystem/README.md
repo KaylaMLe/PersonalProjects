@@ -21,3 +21,5 @@ The rendered video with mathematics conventions can be found [here](https://yout
 	* Coordinate label is now color coded
 * 1.5 (January 15, 2022)
 	* Finished animation now has ISO convention version
+* 2.0 (January 28, 2023)
+    * Made a lot of progress toward moving the animation source code to an object-oriented design

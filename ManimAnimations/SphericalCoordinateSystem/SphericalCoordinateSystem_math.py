@@ -52,18 +52,19 @@ class SphericalCoordinateSystem(Scene):
         theta_coord.next_to(right_parenthesis, LEFT)
         r_coord.next_to(theta_coord, LEFT)
         left_parenthesis.next_to(r_coord, LEFT)
-
-        self.play(Create(vector_r))
-        self.wait(0.5)
-        self.add(label_R)
-        self.wait(0.5)
-
+        # TODO: separate wait times into separate anim_group items?
         # animate axes creation and add labels
-        self.play(Create(axis_x), Create(axis_y), Create(axis_z))
-        self.bring_to_front(vector_r)
-        self.wait(0.5)
-        self.add(label_X, label_Y, label_Z)
-        self.wait(0.5)
+        self.add_anim(anim_group(anim_type.CREATE, 0.5, vector_r.arrow))
+        self.add_anim(anim_group(anim_type.ADD, 0.5, vector_r.label))
+        self.add_anim(anim_group(anim_type.CREATE, 0,
+                      axis_x.arrow, axis_y.arrow, axis_z.arrow))
+
+        self.add_anim(anim_group(anim_type.FRONT, 0.5, vector_r.arrow))
+        self.add_anim(anim_group(anim_type.ADD, 0.5,
+                      axis_x.label, axis_y.label, axis_z.label))
+        self.add_anim(anim_group(anim_type.TRANSFORM, 0,
+                      vector_r.arrow, vector_rt.arrow))
+        # TODO: how to allow multiple concurrent pairs of transforms?
         self.play(Transform(vector_r, vector_rt), Transform(
             label_R, label_RT), Create(theta), Create(label_theta))
         self.play(Create(left_parenthesis), Create(r_coord),
