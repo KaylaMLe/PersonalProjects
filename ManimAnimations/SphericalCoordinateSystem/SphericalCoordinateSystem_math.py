@@ -41,18 +41,20 @@ class SphericalCoordinateSystem(Scene):
         right_parenthesis = Text(")", font_size=48)
         r_coord = Text("R, ", color=RED, font_size=48)
         theta_coord = Text("θ", color=BLUE, font_size=48)
-        theta_coord2 = Text("θ, ", color=BLUE, font_size=48)
+        theta_coord2 = theta_coord.copy()
         phi_coord = Text("φ", color=GREEN, font_size=48)
 
         right_parenthesis.next_to(axis_z.arrow, LEFT)
         theta_coord.next_to(right_parenthesis, LEFT)
         r_coord.next_to(theta_coord, LEFT)
         left_parenthesis.next_to(r_coord, LEFT)
-        # TODO: separate wait times into separate anim_group items?
+
         # animate axes creation and add labels
-        self.add_anim(anim_group(anim_type.CREATE, 0.5, vector_r.arrow))
-        self.add_anim(anim_group(anim_type.ADD, 0.5, vector_r.label))
-        self.add_anim(anim_group(anim_type.CREATE, 0,
+        self.add_anim(anim_group(anim_type.CREATE, vector_r.arrow))
+        self.add_anim(anim_group(anim_type.WAIT, waitSeconds=0.5))
+        self.add_anim(anim_group(anim_type.ADD, vector_r.label))
+        self.add_anim(anim_group(anim_type.WAIT, waitSeconds=0.5))
+        self.add_anim(anim_group(anim_type.CREATE,
                       axis_x.arrow, axis_y.arrow, axis_z.arrow))
 
         # theta component
@@ -61,32 +63,29 @@ class SphericalCoordinateSystem(Scene):
         label_theta = Text("θ", color=BLUE, font_size=36)
         label_theta.next_to(theta, DOWN)
 
-        self.add_anim(anim_group(anim_type.FRONT, 0.5, vector_r.arrow))
-        self.add_anim(anim_group(anim_type.ADD, 0.5,
+        self.add_anim(anim_group(anim_type.FRONT, vector_r.arrow))
+        self.add_anim(anim_group(anim_type.WAIT, waitSeconds=0.5))
+        self.add_anim(anim_group(anim_type.ADD,
                       axis_x.label, axis_y.label, axis_z.label))
-        self.add_anim(anim_group(anim_type.TRANSFORM, 0,
-                      vector_r.arrow, vector_rt.arrow))
-        # TODO: how to allow multiple concurrent pairs of transforms?
-        self.play(Transform(vector_r, vector_rt), Transform(
-            label_R, label_RT), Create(theta), Create(label_theta))
-        self.play(Create(left_parenthesis), Create(r_coord),
-                  Create(theta_coord), Create(right_parenthesis))
-        self.wait(1)
+        self.add_anim(anim_group(anim_type.WAIT, waitSeconds=0.5))
+        self.add_anim(anim_group(anim_type.TRANSFORM,
+                      vector_r.arrow, vector_rt.arrow, vector_r.label, vector_rt.label),
+                      anim_group(anim_type.CREATE, theta, label_theta,
+                                 left_parenthesis, r_coord, theta_coord, right_parenthesis))
+        self.add_anim(anim_group(anim_type.WAIT, waitSeconds=1))
 
         # coordinate label repositioning to add phi component
         phi_coord.next_to(right_parenthesis, LEFT)
         theta_coord2.next_to(phi_coord, LEFT)
 
         # vector r placeholder for phi translation
-        r_theta = DashedLine(origin.get_center(), end_RT.get_center())
-        self.add(r_theta)
+        r_theta = DashedLine(origin, vector_rt.end)
+        self.add_anim(anim_group(anim_type.ADD, r_theta))
 
         # phi translation
-        end_RTP = Dot([1.64, 2.25, 0])
-        vector_RTP = Arrow(origin.get_center(),
-                           end_RTP.get_center(), color=RED, buff=0)
-        label_RTP = label_R.copy()
-        label_RTP.next_to(vector_RTP, RIGHT)
+        vector_rtp = ptd_arrow(end=[1.64, 2.25, 0])
+        vector_rtp.arrow.buff = 0
+        vector_rtp.add_label('R', RIGHT, 36, False)
 
         # phi component
         phi = Arc(radius=3.1, start_angle=5.21, angle=1.89,
@@ -94,12 +93,15 @@ class SphericalCoordinateSystem(Scene):
         label_phi = Text("φ", color=GREEN, font_size=36)
         label_phi.next_to(phi, RIGHT)
 
-        self.play(Transform(vector_r, vector_RTP), Transform(
-            label_R, label_RTP), Create(phi), Create(label_phi))
-        self.play(FadeOut(left_parenthesis), FadeOut(
-            r_coord), FadeOut(theta_coord))
+        self.add_anim(anim_group(anim_type.TRANSFORM, vector_r.arrow,
+                      vector_rtp.arrow, vector_r.label, vector_rtp.label),
+                      anim_group(anim_type.CREATE, phi, label_phi),
+                      anim_group(anim_type.FADE, left_parenthesis, r_coord, theta_coord))
+        # TODO: handle mobject repositioning
         r_coord.next_to(theta_coord2, LEFT)
         left_parenthesis.next_to(r_coord, LEFT)
         self.play(Create(phi_coord), Transform(theta_coord, theta_coord2),
                   Create(r_coord), Create(left_parenthesis))
-        self.wait(1)
+        self.add_anim(anim_group(anim_type.CREATE, phi_coord, r_coord, left_parenthesis),
+                      anim_group(anim_type.TRANSFORM, theta_coord, theta_coord2))
+        self.add_anim(anim_group(anim_type.WAIT, waitSeconds=1))

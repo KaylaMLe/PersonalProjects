@@ -27,15 +27,23 @@ class anim_type(Enum):
     # objects' creation is animated
     # the exact animation depends on the type of object
     CREATE = 2
-    # one object is morphed into another
+    # mobjects are morphed into the next mobject in the group
+    # the number of mobjects passed must be even
     TRANSFORM = 3
+    # fades out mobjects
+    FADE = 4
     # an object is brought to the top layer of a scene
-    FRONT = 4
+    FRONT = 5
+    # a delay between animations
+    WAIT = 6
 
 
 # groups together animation type and delay after animation with the relevant mobjects
 class anim_group:
-    def __init__(self, anim: anim_type, delaySeconds: float, *mobjects: Mobject) -> None:
+    def __init__(self, anim: anim_type, *mobjects: Mobject, waitSeconds: float = 0) -> None:
         self.anim = anim
-        self. delaySeconds = delaySeconds
-        self.mobjects = mobjects
+
+        if anim == anim_type.WAIT:
+            self.time = waitSeconds
+        else:
+            self.mobjects = Group(mobjects)
