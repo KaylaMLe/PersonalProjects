@@ -1,18 +1,24 @@
 # Projects Overview
 Below is a quick overview of my different projects in this repo.
 
-## Simpletron
-*Status: Hiatus*
-* Language: C++
 
-Uses a high-level language to parse a text file and emulate ARM assembly programming
+## Dog
+*Status: In Progress*
+* Languages: UML, JavaScript (anticipated)
 
+Model a complex concept from an object-oriented perspective
 
 ## Animations in Manim
 *Status: Ongoing*
 * Language: Python
 
 Apply mathematic knowledge to digital animated structures to teach others math
+
+## Simpletron
+*Status: Hiatus*
+* Language: C++
+
+Uses a high-level language to parse a text file and emulate ARM assembly programming
 
 ## HighLow
 *Status: Finished*
