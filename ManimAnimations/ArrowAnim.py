@@ -30,20 +30,30 @@ class anim_type(Enum):
     # mobjects are morphed into the next mobject in the group
     # the number of mobjects passed must be even
     TRANSFORM = 3
+    # reposition a mobject relative to another
+    NEXTTO = 4
     # fades out mobjects
-    FADE = 4
+    FADE = 5
     # an object is brought to the top layer of a scene
-    FRONT = 5
-    # a delay between animations
-    WAIT = 6
+    FRONT = 6
 
 
 # groups together animation type and delay after animation with the relevant mobjects
 class anim_group:
-    def __init__(self, anim: anim_type, *mobjects: Mobject, waitSeconds: float = 0) -> None:
+    def __init__(self, anim: anim_type, *mobjects: Mobject) -> None:
         self.anim = anim
+        self.mobjects = Group(mobjects)
 
-        if anim == anim_type.WAIT:
-            self.time = waitSeconds
-        else:
-            self.mobjects = Group(mobjects)
+
+# a delay between animations
+class wait(anim_group):
+    def __init__(self, waitSeconds: float) -> None:
+        self.waitSeconds = waitSeconds
+
+
+# repositioning a mobject
+class next_to(anim_group):
+    def __init__(self, source: Mobject, target: Mobject, direction: ndarray) -> None:
+        self.source = source
+        self.target = target
+        self. direction = direction
