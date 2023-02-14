@@ -1,0 +1,91 @@
+<mxfile host="65bd71144e">
+    <diagram id="SUushjZJWubNQhusn0_C" name="Page-1">
+        <mxGraphModel dx="1454" dy="491" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="2" value="class" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry width="200" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="3" value="resources" style="rounded=0;whiteSpace=wrap;html=1;verticalAlign=top;align=left;" vertex="1" parent="1">
+                    <mxGeometry y="40" width="100" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="4" value="collaborators" style="rounded=0;whiteSpace=wrap;html=1;verticalAlign=top;align=left;" vertex="1" parent="1">
+                    <mxGeometry x="100" y="40" width="100" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="11" value="paw" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="100" y="160" width="200" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="12" value="claws&lt;br&gt;fur&lt;br&gt;pads&lt;br&gt;size" style="rounded=0;whiteSpace=wrap;html=1;verticalAlign=top;align=left;" vertex="1" parent="1">
+                    <mxGeometry x="100" y="200" width="100" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="13" value="claw&lt;br&gt;pad" style="rounded=0;whiteSpace=wrap;html=1;verticalAlign=top;align=left;" vertex="1" parent="1">
+                    <mxGeometry x="200" y="200" width="100" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="14" value="fur" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="320" y="160" width="200" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="15" value="color&lt;br&gt;length&lt;br&gt;texture&lt;br&gt;&lt;br&gt;shed()&lt;br&gt;grow()" style="rounded=0;whiteSpace=wrap;html=1;verticalAlign=top;align=left;" vertex="1" parent="1">
+                    <mxGeometry x="320" y="200" width="100" height="100" as="geometry"/>
+                </mxCell>
+                <mxCell id="16" value="" style="rounded=0;whiteSpace=wrap;html=1;verticalAlign=top;align=left;" vertex="1" parent="1">
+                    <mxGeometry x="420" y="200" width="100" height="100" as="geometry"/>
+                </mxCell>
+                <mxCell id="17" value="face" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="540" y="160" width="200" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="18" value="ears&lt;br&gt;eyes&lt;br&gt;fur&lt;br&gt;mouth&lt;br&gt;nose" style="rounded=0;whiteSpace=wrap;html=1;verticalAlign=top;align=left;" vertex="1" parent="1">
+                    <mxGeometry x="540" y="200" width="100" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="19" value="fur" style="rounded=0;whiteSpace=wrap;html=1;verticalAlign=top;align=left;" vertex="1" parent="1">
+                    <mxGeometry x="640" y="200" width="100" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="23" value="leg" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="100" y="320" width="200" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="24" value="fur&lt;br&gt;list of paws&lt;br&gt;position&lt;br&gt;size&lt;br&gt;&lt;br&gt;kick()&lt;br&gt;step()" style="rounded=0;whiteSpace=wrap;html=1;verticalAlign=top;align=left;" vertex="1" parent="1">
+                    <mxGeometry x="100" y="360" width="100" height="110" as="geometry"/>
+                </mxCell>
+                <mxCell id="25" value="fur&lt;br&gt;paw" style="rounded=0;whiteSpace=wrap;html=1;verticalAlign=top;align=left;" vertex="1" parent="1">
+                    <mxGeometry x="200" y="360" width="100" height="110" as="geometry"/>
+                </mxCell>
+                <mxCell id="26" value="tail" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="320" y="320" width="200" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="27" value="fur&lt;br&gt;length&lt;br&gt;&lt;br&gt;wag()" style="rounded=0;whiteSpace=wrap;html=1;verticalAlign=top;align=left;" vertex="1" parent="1">
+                    <mxGeometry x="320" y="360" width="100" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="28" value="fur" style="rounded=0;whiteSpace=wrap;html=1;verticalAlign=top;align=left;" vertex="1" parent="1">
+                    <mxGeometry x="420" y="360" width="100" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="29" value="head" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="540" y="320" width="200" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="30" value="face&lt;br&gt;fur&lt;br&gt;list of ears&lt;br&gt;shape&lt;br&gt;size&lt;br&gt;&lt;br&gt;turn()" style="rounded=0;whiteSpace=wrap;html=1;verticalAlign=top;align=left;" vertex="1" parent="1">
+                    <mxGeometry x="540" y="360" width="100" height="110" as="geometry"/>
+                </mxCell>
+                <mxCell id="31" value="face&lt;br&gt;fur" style="rounded=0;whiteSpace=wrap;html=1;verticalAlign=top;align=left;" vertex="1" parent="1">
+                    <mxGeometry x="640" y="360" width="100" height="110" as="geometry"/>
+                </mxCell>
+                <mxCell id="32" value="body" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="100" y="490" width="240" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="33" value="fur&lt;br&gt;head&lt;br&gt;list of legs&lt;br&gt;tail&lt;br&gt;energy&lt;br&gt;hunger&lt;br&gt;&lt;br&gt;checkEngergyUsed()&lt;br&gt;checkHealth()&lt;br&gt;increaseAppetite()" style="rounded=0;whiteSpace=wrap;html=1;verticalAlign=top;align=left;" vertex="1" parent="1">
+                    <mxGeometry x="100" y="530" width="120" height="160" as="geometry"/>
+                </mxCell>
+                <mxCell id="34" value="head&lt;br&gt;leg&lt;br&gt;tail" style="rounded=0;whiteSpace=wrap;html=1;verticalAlign=top;align=left;" vertex="1" parent="1">
+                    <mxGeometry x="220" y="530" width="120" height="160" as="geometry"/>
+                </mxCell>
+                <mxCell id="35" value="dog" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="100" y="710" width="200" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="36" value="appetite&lt;br&gt;body&lt;br&gt;health&lt;br&gt;mood&lt;br&gt;social memory&lt;br&gt;&lt;br&gt;bark()&lt;br&gt;beg()&lt;br&gt;eat()&lt;br&gt;move()&lt;br&gt;play()&lt;br&gt;sleep()" style="rounded=0;whiteSpace=wrap;html=1;verticalAlign=top;align=left;" vertex="1" parent="1">
+                    <mxGeometry x="100" y="750" width="100" height="190" as="geometry"/>
+                </mxCell>
+                <mxCell id="37" value="body" style="rounded=0;whiteSpace=wrap;html=1;verticalAlign=top;align=left;" vertex="1" parent="1">
+                    <mxGeometry x="200" y="750" width="100" height="190" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>
