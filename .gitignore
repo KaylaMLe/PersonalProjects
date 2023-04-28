@@ -1,4 +1,9 @@
-# ignore any compiled test binaries
-*.exe
 .vscode/
+
+# ignore any compiled code and videos
+*.exe
 ./ManimAnimations/manim
+*.class
+
+# ignore test files
+*.txt
