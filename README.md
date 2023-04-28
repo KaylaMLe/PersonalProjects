@@ -2,8 +2,15 @@
 Below is a quick overview of my different projects in this repo.
 
 
+## Array algorithm testing
+*Status: In progress*
+* Language: Java
+
+Utilities for storing and reading lists of integers for consistent algorithm
+testing
+
 ## Dog
-*Status: In Progress*
+*Status: In progress*
 * Languages: UML, JavaScript (anticipated)
 
 Model a complex concept from an object-oriented perspective
@@ -38,4 +45,4 @@ Kayla Marie Le – [LinkedIn](https://www.linkedin.com/in/kaylamle/) – kaylale
 
 Distributed under the GNU General Public License v3.0. See ``LICENSE`` for more information.
 
-[https://github.com/KaylaMLe/PersonalProjects](https://github.com/dbader/)
+[https://github.com/KaylaMLe/PersonalProjects](https://github.com/KaylaMLe/PersonalProjects)
