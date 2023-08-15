@@ -11,9 +11,9 @@ testing
 
 ## Dog
 *Status: In progress*
-* Languages: UML, JavaScript (anticipated)
+* Languages: JavaScript
 
-Model a complex concept from an object-oriented perspective
+Play with a dog in your web browser
 
 ## Animations in Manim
 *Status: Ongoing*
