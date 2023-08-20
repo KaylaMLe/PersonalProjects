@@ -1,5 +1,5 @@
 import './style.css';
-import dog from './assets/artists-rendition.png'
+import { Dog } from './dog'
 import floor from './assets/floor.png';
 
 export function Room() {
@@ -8,13 +8,7 @@ export function Room() {
       <Dog />
       <Floor />
     </div>
-  )
-}
-
-function Dog() {
-  return (
-    <img src={dog} className="Dog" alt="A friendly dog" />
-  )
+  );
 }
 
 function Floor() {
