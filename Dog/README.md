@@ -1,7 +1,7 @@
 # Dog
 > Simulates a dog in a web app
 
-* Language: JavaScript
+* Language: TypeScript
 
 ## Installation
 

@@ -1,6 +1,6 @@
+import React from 'react';
 import './style.css';
 import { Dog } from './dog'
-import floor from './assets/floor.png';
 
 export function Room() {
   return (
@@ -13,6 +13,6 @@ export function Room() {
 
 function Floor() {
   return (
-    <img src={floor} className="Floor" alt="floor" />
+    <img src={'./assets/floor.png'} className="Floor" alt="floor" />
   );
 }

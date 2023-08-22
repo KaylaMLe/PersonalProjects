@@ -11,7 +11,7 @@ testing
 
 ## Dog
 *Status: In progress*
-* Languages: JavaScript
+* Languages: TypeScript
 
 Play with a dog in your web browser
 
